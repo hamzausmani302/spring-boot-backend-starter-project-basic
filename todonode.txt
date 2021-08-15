@@ -1,0 +1,23 @@
+Category  -> name ,  parentId
+
+
+Admin route ->	
+	//getcategories			//json
+	//post categroies		//josn	
+	//upload image
+	//delete category		//josn
+	//put categroy / update		//json
+	//add product
+	//rtemove product
+	//edit product
+	//get products		
+	//uploads image  -> cloudinary
+	//login		-> jwt token
+	
+User route	->    
+	//getcategories
+
+	//get products  		//json
+	//Contact Us  
+	//Orders payment		-> Stripe
+	//Comments

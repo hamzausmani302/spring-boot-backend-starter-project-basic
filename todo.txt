@@ -1,0 +1,5 @@
+GET /topics  Get all topics
+GET /topics/id  Get a particular element
+POST /topics    Create a new topic
+PUT /topics/id   Update the ropic
+DELETE /topics/id  Deltee the record

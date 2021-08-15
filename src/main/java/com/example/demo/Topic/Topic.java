@@ -1,6 +1,10 @@
 package com.example.demo.Topic;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+@Document
 public class Topic {
+	@Id
 	private String id;
 	
 	public Topic() {
