@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DAO.AccessService;
 import com.example.demo.DAO.FakeUserDAO;
 import com.example.demo.DAO.StudentDAO;
 
@@ -20,7 +21,7 @@ public class UserService {
 	
 	
 	@Autowired
-	private StudentDAO userDAO;
+	private AccessService userDAO;
 	public List<Student> get_all() {
 		return userDAO.findAll();
 	}

@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 
-public class StarterproojectApplication implements CommandLineRunner {
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+public class StarterproojectApplication  {
+	
 	
 	public static void main(String[] args) {
 		 SpringApplication app = new SpringApplication(StarterproojectApplication.class);
@@ -25,24 +24,10 @@ public class StarterproojectApplication implements CommandLineRunner {
 	          .singletonMap("server.port", "8083"));
 	        app.run(args);
 	}
-	  @Override
-	    public void run(String... args) throws Exception {
-	        String sql = "INSERT INTO students (id , name) VALUES (?, ?)";
-	         
-	        int result;
-			try {
-//				result = jdbcTemplate.update(sql, 2,  "usama");
-//				 if (result > 0) {
-//			            System.out.println("A new row has been inserted.");
-//			        }
-			} catch (DataAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	         
+	
 	       
 	         
-	    }
+	    
 	
 	
 	

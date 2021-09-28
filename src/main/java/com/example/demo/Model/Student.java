@@ -8,7 +8,11 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-     
+    public Student(Integer id, String name) {
+    	this.id = id;
+    	this.name = name;
+    }
+    
     public Integer getId() {
 		return id;
 	}
