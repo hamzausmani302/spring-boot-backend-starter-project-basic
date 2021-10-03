@@ -3,19 +3,39 @@ package com.example.demo.DAO;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
 
 import com.example.demo.Model.Customer;
-
+@Repository
 public class CustomerDAO implements CustomerRepo{
-
+	@Autowired
+	private JdbcTemplate jdbc;
+	
 	@Override
 	public List<Customer> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT * FROM customer";
+		
+		return jdbc.query(query,(res , i)->{
+			Customer cut = new Customer();
+			cut.setID(res.getInt("id"));
+			cut.setAddress(res.getString("address"));
+			cut.setEmail(res.getString("email"));
+			cut.setFirstName(res.getString("first_name"));
+			cut.setDate(res.getDate("date"));
+			cut.setLastName(res.getString("last_name"));
+			cut.setPhoneNumber(res.getString("phone_number"));
+			return cut;
+		});
 	}
 
 	@Override
@@ -81,8 +101,23 @@ public class CustomerDAO implements CustomerRepo{
 	@Override
 	public Customer getById(Integer id) {
 		// TODO Auto-generated method stub
+		String query = "SELECT * FROM CUSTOMER WHERE ID = " + Integer.toString(id) ;
+		List<Customer> custs =  jdbc.query(query,(res , i)->{
+			Customer cut = new Customer();
+			cut.setID(res.getInt("id"));
+			cut.setAddress(res.getString("address"));
+			cut.setEmail(res.getString("email"));
+			cut.setFirstName(res.getString("first_name"));
+			cut.setDate(res.getDate("date"));
+			cut.setLastName(res.getString("last_name"));
+			cut.setPhoneNumber(res.getString("phone_number"));
+			return cut;
+		});
+		if(custs.size() > 0) {
+			return custs.get(0);
+		}
 		return null;
-	}
+		}
 
 	@Override
 	public <S extends Customer> List<S> findAll(Example<S> example) {
@@ -101,11 +136,41 @@ public class CustomerDAO implements CustomerRepo{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	
+	public <S extends Customer> S save1(S en) throws Exception {
+		// TODO Auto-generated method stub
+		String query = "INSERT INTO CUSTOMER VALUES(?,?,?,?,?,?,?,?)";
+		int res = 0;
+		try {
+			res = jdbc.update(query, en.getID() , en.getAddress() ,en.getDate() ,en.getEmail(), en.getFirstName()
+					,en.getLastName() , en.getPassword() , en.getPhoneNumber());
+			System.out.print("record updated");
+			return en;
+		}catch(Exception e) {
+			System.out.print("error");
+			throw new Exception("error");
+		}
+		
+		
+	}
 
 	@Override
-	public <S extends Customer> S save(S entity) {
+	public  <S extends Customer> S save(S en) {
 		// TODO Auto-generated method stub
-		return null;
+		String query = "INSERT INTO CUSTOMER VALUES(?,?,?,?,?,?,?,?)";
+		int res = 0;
+		try {
+			res = jdbc.update(query, en.getID() , en.getAddress() ,en.getDate() ,en.getEmail(), en.getFirstName()
+					,en.getLastName() , en.getPassword() , en.getPhoneNumber());
+			System.out.print("record updated");
+			return en;
+		}catch(Exception e) {
+			System.out.print("error");
+		}
+		return en;
+		
 	}
 
 	@Override

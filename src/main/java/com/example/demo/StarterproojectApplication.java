@@ -31,9 +31,7 @@ public class StarterproojectApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		final String query = "CREATE TABLE CUSTOMERS(ID INT PRIMARY KEY, firstname VARCHAR(20) NOT NULL , "
-				+ "lastname VARCHAR(20) NOT NULL, email VARCHAR(20) NOT NULL , password VARCHAR(20) NOT NULL ,"
-				+ "ADDRESS VARCHAR(40) , PHONENUMBER VARCHAR(11) , date DATE NOT NULL  )";
+		final String query = "SELECT * FROM CUSTOMER";
 		jdbc.execute(query);
 	}
 	
